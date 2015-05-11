@@ -15,6 +15,7 @@ $(function() {
 function tapsApp () {
     var data = new tapsDataStore();
     var chart = new tapsChart($('#chart'));
+    var list = new tapsList($('#ctr-list'));
     var curCounter;
     
     /* Load defaults */
@@ -86,6 +87,7 @@ function tapsApp () {
         chart.update(data.getEntries(curCounter),true,data.getStart(curCounter));
     });
     $('#view-interval').keydown(function(e) {
+        if (e.keyCode == 13) {
             chart.init($('#choose-view-data').val(),parseInt($(this).val()));
             chart.update(data.getEntries(curCounter),true,data.getStart(curCounter));
         }
@@ -118,6 +120,7 @@ function tapsApp () {
         $('#counter').text(data.getCounter(curCounter));
         $('#cnt-revert').prop("disabled", (data.getEntries(curCounter).length == 0));
         chart.update(data.getEntries(curCounter),false,data.getStart(curCounter));
+        list.update(data.getEntries(curCounter),false);
     }
     /**
      * Update disable state of count buttons and caption of start/pause button
@@ -137,6 +140,7 @@ function tapsApp () {
         $('.choose-counter').val(id);
         $('#ctr-name').val(data.getName(id));
         chart.update(data.getEntries(id),true,data.getStart(id));
+        list.update(data.getEntries(id),true);
         updateCounter();
         updateCounterState();
     }
@@ -382,6 +386,47 @@ function tapsChart (container) {
         chart.render();
     };
 }
+
+tapsList = function(container) {
+    var len = 0;
+    /* difference in seconds to start new paragraph */
+    var diff = 2	;
+    
+    this.update = function(data,fullupdate) {
+        if (fullupdate) {
+            container.children().detach();
+            
+            if (data.length > 0) {
+                var p = $('<p></p>');
+                for (var i in data) {
+                    if (i != 0 && data[i-1].t <= data[i].t-diff) {
+                        container.prepend(p);
+                        p = $('<p></p>');
+                    }
+                    p.prepend((data[i].d > 0) ? '+' : '–');
+                    len++;
+                }
+                container.prepend(p)
+            }
+        } else {
+            if (len < data.length) {
+                if (data.length == 1 || data[data.length-2].t <= data[data.length-1].t - diff) {
+                    var p = $('<p></p>').prepend((data[data.length-1].d > 0) ? '+' : '–');
+                    container.prepend(p);
+                } else {
+                    container.children().first().prepend((data[data.length-1].d > 0) ? '+' : '–');
+                }
+                len++;
+            } else if (len > data.length) {
+                var firstp = container.children().first();
+                firstp.text(firstp.text().slice(1));
+                if (firstp.text() == '')
+                    firstp.detach();
+                len--;
+            }
+        }
+    }
+};
 
 tapsUtil = {
     aggregate: function (data,start,interval) {

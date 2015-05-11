@@ -113,7 +113,6 @@ button:disabled {
     font-size: 75px;
     line-height: 1em;
 }
-
 #cnt-out {
     border-color: #e00;
     color: #e00;
@@ -128,6 +127,17 @@ button:disabled {
 #cnt-in:active {
     background-color: #080;
 }
+
+#ctr-list {
+    max-height: 200px;
+    overflow-y: auto;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+#ctr-list p {
+    margin: 6px 0 0 0;
+}
+
 #view-interval {
     width: 60px;
 }
