@@ -11,7 +11,6 @@ $(function() {
     app = new tapsApp();
 });
 
-
 function tapsApp () {
     var data = new tapsDataStore();
     var chart = new tapsChart($('#chart'));
@@ -94,6 +93,31 @@ function tapsApp () {
     });
     $('#export').click(function() {
         dataExport($('#choose-view-data').val(),$('#choose-export-format').val(),parseInt($('#view-interval').val()));
+    });
+    $('input[type="text"]').keydown(function(e) {
+        e.stopPropagation();
+    });
+    $('html').keydown(function(e) {
+        switch(e.keyCode) {
+            case 107: //NUM+
+            case 32: //SPACE
+                $('#cnt-in').addClass('active').delay(75)
+                        .queue(function(){
+                            $(this).removeClass('active').dequeue();
+                        });
+                data.count(curCounter, 1);
+                updateCounter();
+                break;
+            case 109: //NUM-
+            case 189: //-
+                $('#cnt-out').addClass('active').delay(75)
+                        .queue(function(){
+                            $(this).removeClass('active').dequeue();
+                        });
+                data.count(curCounter, -1);
+                updateCounter();
+                break;
+        }
     });
     
     /**

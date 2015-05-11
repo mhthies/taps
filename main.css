@@ -117,14 +117,14 @@ button:disabled {
     border-color: #e00;
     color: #e00;
 }
-#cnt-out:active {
+#cnt-out:active, #cnt-out.active {
     background-color: #800;
 }
 #cnt-in {
     border-color: #0e0;
     color: #0e0;
 }
-#cnt-in:active {
+#cnt-in:active, #cnt-in.active {
     background-color: #080;
 }
 
