@@ -86,7 +86,6 @@ function tapsApp () {
         chart.update(data.getEntries(curCounter),true,data.getStart(curCounter));
     });
     $('#view-interval').keydown(function(e) {
-        if (e.keyCode() == 13) {
             chart.init($('#choose-view-data').val(),parseInt($(this).val()));
             chart.update(data.getEntries(curCounter),true,data.getStart(curCounter));
         }
