@@ -237,7 +237,7 @@ function tapsDataStore() {
     this.addCounter = function() {
         var newId = data.ctr.length;
         data.ctr.push({
-            "name" : "Counter " + newId,
+            "name" : "counter_" + newId,
             "start" : 0,
             "pause" : 0,
             "pausedTime" : 0,
