@@ -73,7 +73,7 @@ function tapsApp () {
                 $('#del-ctr').text('– Delete');
             } else {
                 $(this).prop('rly',true);
-                $(this).text('Shure?');
+                $(this).text('Sure?');
             }
         }
     });
