@@ -133,6 +133,8 @@ button:disabled {
     overflow-y: auto;
     font-weight: bold;
     letter-spacing: 2px;
+    word-wrap: break-word;
+    line-height: 0.8;
 }
 #ctr-list p {
     margin: 6px 0 0 0;
