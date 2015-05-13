@@ -85,11 +85,23 @@ function tapsApp () {
         chart.init($(this).val(),parseInt($('#view-interval').val()));
         chart.update(data.getEntries(curCounter),true,data.getStart(curCounter));
     });
+    $('#view-interval').prop('preval',$('#view-interval').val());
     $('#view-interval').keydown(function(e) {
         if (e.keyCode == 13) {
+            if (!isNaN(parseInt($(this).val()))) {
+                chart.init($('#choose-view-data').val(),parseInt($(this).val()));
+                chart.update(data.getEntries(curCounter),true,data.getStart(curCounter));
+                $(this).prop('preval',$(this).val());
+            }
+        }
+    });
+    $('#view-interval').blur(function(e) {
+        if (!isNaN(parseInt($(this).val()))) {
             chart.init($('#choose-view-data').val(),parseInt($(this).val()));
             chart.update(data.getEntries(curCounter),true,data.getStart(curCounter));
-        }
+            $(this).prop('preval',$(this).val());
+        } else
+            $(this).val($(this).prop('preval'));
     });
     $('#export').click(function() {
         dataExport($('#choose-view-data').val(),$('#choose-export-format').val(),parseInt($('#view-interval').val()));
