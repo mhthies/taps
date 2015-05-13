@@ -353,6 +353,7 @@ function tapsChart (container) {
     var chart = new CanvasJS.Chart(container[0],cdata);
     var type = 0;
     var interval = 300;
+    var lastUpdate = 0;
     
     this.init = function (newtype, newinterval) {
         type = newtype;
@@ -391,21 +392,35 @@ function tapsChart (container) {
             }
             
         } else if (type == 1) {
+            var beginUpdate;
             
-            // TODO: if (!fullupdate) schlauer
-            
+            if (fullupdate) {
                 cdata.data = [
                     {"type": "stackedColumn", "dataPoints": []},
                     {"type": "stackedColumn", "dataPoints": []}
                 ];
+                lastUpdate = 0;
+                beginUpdate = start;
                 
-                if (data.length > 0) {
-                    var groups = tapsUtil.aggregate(data,start,interval);
-                    for (var i in groups) {
-                        cdata.data[0].dataPoints.push({x: new Date(groups[i].t*1000), y: groups[i].p});
-                        cdata.data[1].dataPoints.push({x: new Date(groups[i].t*1000), y: -groups[i].n});
-                    }
+            } else {
+                beginUpdate = lastUpdate - ((lastUpdate - start) % interval);
+                
+                if (cdata.data[0].dataPoints.length > 0 && cdata.data[0].dataPoints.slice(-1)[0].x.getTime() / 1000 >= beginUpdate) {
+                    cdata.data[0].dataPoints.pop();
+                    cdata.data[1].dataPoints.pop();
                 }
+            }
+            
+            if (data.length > 0) {
+                var groups = tapsUtil.aggregate(data,beginUpdate,interval);
+                lastUpdate = Math.floor(Date.now() / 1000);
+                
+                for (var i in groups) {
+                    cdata.data[0].dataPoints.push({x: new Date(groups[i].t*1000), y: groups[i].p});
+                    cdata.data[1].dataPoints.push({x: new Date(groups[i].t*1000), y: -groups[i].n});
+                }
+            }
+
         }
         chart.render();
     };
@@ -462,7 +477,7 @@ tapsUtil = {
         while(index < data.length && data[index].t < start)
             index++;
         
-        for (var t = start; t < end+interval; t += interval) {
+        for (var t = start; t <= end; t += interval) {
             var valp = 0;
             var valn = 0;
             while(index < data.length && data[index].t < t + interval) {
