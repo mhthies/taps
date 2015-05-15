@@ -182,3 +182,31 @@ button:disabled {
     width: 50%;
     height: 40px;
 }
+
+/* Responsive design */
+@media(min-width: 800px){
+    #maincon-button {
+        position: fixed;
+        width: 400px;
+    }
+    #maincon-aside {
+        margin-left: 400px;
+        overflow: hidden;
+    }
+    #maincon-aside .container:first-child {
+        margin-top: 5px;
+    }
+}
+@media(min-width: 1000px){
+    .row {
+        width: 50%;
+        float: left;
+        margin: 0;
+        box-sizing: border-box;
+    }
+}
+@media(min-height: 650px) {
+    #chart {
+        height: 450px;
+    }
+}

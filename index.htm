@@ -10,7 +10,7 @@
       <link rel="stylesheet" href="main.css" type="text/css" />
     </head>
     <body>
-        <div class="screenpage">
+        <div class="screenpage" id="maincon-button">
             <div class="input-group">
                 <select id="choose-counter-1" class="choose-counter"></select>
                 <div class="input-group-fix"><button id="cnt-start"></button></div>
@@ -24,31 +24,37 @@
                 <div class="button-container-inner"><button id="cnt-in">+</button></div>
             </div>
         </div>
-        <div class="container">
-            <div id="ctr-list"></div>
-        </div>
-        <div class="container">
-            <div class="input-group">
-                <div class="input-group-fix text-cell">Data:</div>
-                <select id="choose-view-data"><option value="0">Total</option><option value="1">Rate</option></select>
-                <div class="input-group-fix text-cell">Interval:</div>
-                <input id="view-interval" type="number" min="1" value="300" />
+        <div id="maincon-aside">
+            <div class="container" id="maincon-chart">
+                <div class="input-group">
+                    <div class="input-group-fix text-cell">Data:</div>
+                    <select id="choose-view-data"><option value="0">Total</option><option value="1">Rate</option></select>
+                    <div class="input-group-fix text-cell">Interval:</div>
+                    <input id="view-interval" type="number" min="1" value="300" />
+                </div>
+                <div id="chart"></div>
+                <div class="input-group">
+                    <div class="input-group-fix"><button id="export">Download</button></div>
+                    <select id="choose-export-format"><option value="0">JSON</option><option value="1">CSV (Excel)</option></select>
+                </div>
             </div>
-            <div id="chart"></div>
-            <div class="input-group">
-                <div class="input-group-fix"><button id="export">Download</button></div>
-                <select id="choose-export-format"><option value="0">JSON</option><option value="1">CSV (Excel)</option></select>
+            <div class="row">
+                <div class="container" id="maincon-list">
+                    <div id="ctr-list"></div>
+                </div>
             </div>
-        </div>
-        <div class="container">
-            <select id="choose-counter-1" class="choose-counter"></select><br />
-            <div class="input-group">
-                <div class="input-group-fix text-cell">Name:</div>
-                <input type="text" id="ctr-name" />
-            </div>
-            <div class="input-group">
-                <button id="del-ctr">– Delete</button>
-                <button id="add-ctr">+ Add</button>
+            <div class="row">
+                <div class="container" id="maincon-man">
+                    <select id="choose-counter-1" class="choose-counter"></select><br />
+                    <div class="input-group">
+                        <div class="input-group-fix text-cell">Name:</div>
+                        <input type="text" id="ctr-name" />
+                    </div>
+                    <div class="input-group">
+                        <button id="del-ctr">– Delete</button>
+                        <button id="add-ctr">+ Add</button>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
