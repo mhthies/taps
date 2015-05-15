@@ -452,11 +452,12 @@ function tapsChart (container) {
 tapsList = function(container) {
     var len = 0;
     /* difference in seconds to start new paragraph */
-    var diff = 2	;
+    var diff = 3;
     
     this.update = function(data,fullupdate) {
         if (fullupdate) {
             container.children().detach();
+            len = 0;
             
             if (data.length > 0) {
                 var p = $('<p></p>');
