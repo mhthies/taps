@@ -9,7 +9,7 @@ The logged data is shown in a chart (made with CanvasJS). You can also download 
 ## More Features
 
 * All data is stored in the browser's localStorage, so you won't loose your counter states on closing the tab.
-* *Taps* has a dark, OLED screen friendly skin and will fit perfectly on every smartphone display. Maybe there will be an update to provide full responsiveness for larger screens.
+* *Taps* has a dark, OLED screen friendly skin and will fit perfectly on every smartphone display. With its responsive layout it will also fit on larger screens.
 * *Taps* allows multiple counters and has a simple select box to switch between them on the fly.
 
 ## How to install
