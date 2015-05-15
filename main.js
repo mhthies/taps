@@ -119,6 +119,7 @@ function tapsApp () {
                         });
                 data.count(curCounter, 1);
                 updateCounter();
+                e.preventDefault();
                 break;
             case 109: //NUM-
             case 189: //-
@@ -128,6 +129,16 @@ function tapsApp () {
                         });
                 data.count(curCounter, -1);
                 updateCounter();
+                e.preventDefault();
+                break;
+            case 8: //BACKSPACE
+                $('#cnt-revert').addClass('active').delay(75)
+                        .queue(function(){
+                            $(this).removeClass('active').dequeue();
+                        });
+                data.revert(curCounter);
+                updateCounter();
+                e.preventDefault();
                 break;
         }
     });

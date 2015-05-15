@@ -95,6 +95,9 @@ button:disabled {
     border-color: #ee0;
     color: #ee0;
 }
+#cnt-revert:active, #cnt-revert.active {
+    background-color: #880;
+}
 #counter {
     font-size: 30px;
     color: #fff;
