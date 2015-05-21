@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>taps</title>
+      <script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
+      <script type="text/javascript" src="lib/canvasjs.min.js"></script>
+      <script type="text/javascript" src="main.js"></script>
+      <link rel="stylesheet" href="main.css" type="text/css" />
+    </head>
+    <body>
+        <div class="screenpage" id="maincon-button">
+            <div class="input-group">
+                <select id="choose-counter-1" class="choose-counter"></select>
+                <div class="input-group-fix"><button id="cnt-start"></button></div>
+            </div>
+            <div class="input-group">
+                <div class="input-group-fix"><button id="cnt-revert">←</button></div>
+                <div id="counter">0</div>
+            </div>
+            <div class="button-container">
+                <div class="button-container-inner"><button id="cnt-out">–</button></div>
+                <div class="button-container-inner"><button id="cnt-in">+</button></div>
+            </div>
+        </div>
+        <div id="maincon-aside">
+            <div class="container" id="maincon-chart">
+                <div class="input-group">
+                    <div class="input-group-fix text-cell">Data:</div>
+                    <select id="choose-view-data"><option value="0">Total</option><option value="1">Rate</option></select>
+                    <div class="input-group-fix text-cell">Interval:</div>
+                    <input id="view-interval" type="number" min="1" value="300" />
+                </div>
+                <div id="chart"></div>
+                <div class="input-group">
+                    <div class="input-group-fix"><button id="export">Download</button></div>
+                    <select id="choose-export-format"><option value="0">JSON</option><option value="1">CSV (Excel)</option></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container" id="maincon-list">
+                    <div id="ctr-list"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container" id="maincon-man">
+                    <select id="choose-counter-1" class="choose-counter"></select><br />
+                    <div class="input-group">
+                        <div class="input-group-fix text-cell">Name:</div>
+                        <input type="text" id="ctr-name" />
+                    </div>
+                    <div class="input-group">
+                        <button id="del-ctr">– Delete</button>
+                        <button id="add-ctr">+ Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
