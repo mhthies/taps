@@ -14,12 +14,14 @@ The logged data is shown in a chart (made with CanvasJS). You can also download 
 
 ## How to install
 
-Download the latest stable version from master branch (Yes, there aren't any yet.) or development version from develop
-branch.
+Download the latest stable version from master branch or development version from develop branch.
 
-Download jQuery 2.1.4 from [jquery.com](http://jquery.com/download/) and canvasJS from [canvasjs.com](http://canvasjs.com/download-html5-charting-graphing-library/) and place the minified js files in `/lib` folder.
+Download jQuery 2.1.4 from [jquery.com](http://jquery.com/download/) and canvasJS from [canvasjs.com](http://canvasjs.com/download-html5-charting-graphing-library/)
+and place the minified js files in `/lib` folder.
 
 Open `index.htm` in your browser or provide it as a web service and enjoy.
+
+You can also use my online service at http://files.mhthies.de/taps
 
 
 ## License
